@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
   barraEpisodios:{
     paddingVertical:10,
     marginHorizontal:5,
-    borderColor:'gray'
+    borderColor:'gray',
+    overflowX: 'auto'
   },
   imagenDetalle:{
     marginVertical:5,
@@ -95,6 +96,12 @@ const styles = StyleSheet.create({
     flex: 1,
    marginHorizontal:20,
    marginVertical:7,
+  },
+  SlideContainerView:{
+    alignItems:'center',
+    justifyContent:'space-evenly',
+    alignSelf:'center',
+    height:'100%'
   }
 });
 export default styles;

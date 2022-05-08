@@ -5,6 +5,7 @@ import { ActivityIndicator } from 'react-native';
 import styles from '../../Styles/Contenedor';
 import ButtonEstilizado from '../../components/ButtonEstilizado';
 import DetalleEspecifico from './DetalleEspecificoEpisodios';
+import Swiper from 'react-native-swiper';
 const VistaDetalleEpisodios = ({uri,setEpisodioSeleccionado}) => {
     const {GetDataEspesifica,especifico,loading}=useGetDataApiRick();
     useEffect(() => {
@@ -14,13 +15,14 @@ const VistaDetalleEpisodios = ({uri,setEpisodioSeleccionado}) => {
     return ( loading?<ActivityIndicator/>:
     <View>
     <Text style={styles.title}>Episodios</Text>
-    <ScrollView
+    {/* <ScrollView
       style={styles.barraEpisodios}
       contentContainerStyle={{alignItems: 'center'}}
-      horizontal>
+      horizontal> */}
+        <Swiper showsButtons={true}>
       {especifico?.episode.map((item, index) => {
         return (
-          <View key={index} style={styles.container}>
+          <View key={index} style={styles.SlideContainerView}>
               <ButtonEstilizado
               title={"Seleccionar"} 
               onPress={()=>setEpisodioSeleccionado(item)}
@@ -31,7 +33,8 @@ const VistaDetalleEpisodios = ({uri,setEpisodioSeleccionado}) => {
           </View>
         );
       })}
-    </ScrollView>
+      </Swiper>
+    {/* </ScrollView> */}
   </View>
      );
 }
