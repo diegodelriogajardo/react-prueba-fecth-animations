@@ -1,44 +1,38 @@
-import React, {useEffect} from 'react';
-import {View, ScrollView} from 'react-native';
-import useGetData from '../../hooks/GetDataApiRick';
-import StyledButton from '../../components/ButtonEstilizado';
-import {useNavigation} from '@react-navigation/native';
-import styles from '../../Styles/Contenedor';
+import React, {useEffect, useState} from 'react';
 import Loading from '../../components/Loading';
+import ListaPersonajesBase from './ListaPersonajesbase';
+import useGetDataApiRick from '../../hooks/GetDataApiRick';
+import {useNavigation} from '@react-navigation/native';
+import HeaderApi from './HeaderApi';
+
 const Api = () => {
-  const {characters, getData, loading} = useGetData();
+  const {characters, getData, loading} = useGetDataApiRick();
   const navegacion = useNavigation();
+  const [filtro, setFiltro] = useState('');
   useEffect(() => {
     const unsuscribe = navegacion.addListener('focus', payload => {
-      console.log("entre afocus")
-      if(characters.length===0){
-        console.log("recargando data")
+      if (characters.length === 0) {
         getData();
       }
     });
     return unsuscribe;
   }, [navegacion]);
-  const goDetails = item => {
-    navegacion.navigate('Details', item);
+
+  const filtrarCharacters = () => {
+    let Lista = characters;
+    let filtroUp = filtro.toUpperCase();
+    Lista = Lista.filter(x => x.name.toUpperCase().includes(filtroUp));
+
+    return Lista;
   };
+
   return loading ? (
     <Loading></Loading>
   ) : (
-    <ScrollView>
-      {characters.map((item, index) => {
-        let backgroundColor = index % 2 == 0 ? 'red' : 'green';
-        return (
-          <View key={index} style={styles.container}>
-            <StyledButton
-              title={item.name}
-              onPress={() => goDetails(item)}
-              style={{
-                backgroundColor: backgroundColor
-                }}></StyledButton>
-          </View>
-        );
-      })}
-    </ScrollView>
+    <>
+      <HeaderApi setFiltro={setFiltro} />
+      <ListaPersonajesBase characters={filtrarCharacters()} />
+    </>
   );
 };
 

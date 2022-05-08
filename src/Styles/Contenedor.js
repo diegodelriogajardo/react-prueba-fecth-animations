@@ -24,17 +24,17 @@ const styles = StyleSheet.create({
 
   },
   Button:{
-    marginTop: 16,
+    marginTop: 10,
     padding: 8,
     borderWidth: 4,
     borderColor: '#20232a',
-    borderRadius: 6,
+    borderRadius: 25,
     color: '#20232a',
     backgroundColor:'yellow'
   },
   TextButton:{
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold',
   },
   Textlist:{
@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
     paddingHorizontal:10,
     alignContent: "center",
     alignSelf:'center',
-    backgroundColor: 'green'
+    backgroundColor: '#77DD77',
+    borderRadius:25
   },
   barraEpisodios:{
     paddingVertical:10,
@@ -61,7 +62,39 @@ const styles = StyleSheet.create({
     borderColor:'gray'
   },
   imagenDetalle:{
-    alignSelf:'center'
+    marginVertical:5,
+    alignSelf:'center',
+    borderRadius:25
+  },
+  containerHeader:{
+    backgroundColor:'green',
+    paddingHorizontal:20,
+    marginHorizontal:5,
+    marginVertical:5,
+    paddingBottom:10,
+    borderRadius:20
+
+  },
+  TextInput:{
+    backgroundColor: 'white',
+    marginVertical:10,
+    marginHorizontal:4,
+    borderWidth:5,
+    borderRadius:25,
+    textAlign:'center',
+    width:'100%'
+  },
+  viewHorizontal:{
+    display:'flex',
+    flexDirection:'row',
+  },
+  ScrollViewApi:{
+   // backgroundColor:'Yellow'
+  },
+  containerButton:{
+    flex: 1,
+   marginHorizontal:20,
+   marginVertical:7,
   }
 });
 export default styles;
