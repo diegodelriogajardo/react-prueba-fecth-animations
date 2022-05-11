@@ -5,7 +5,6 @@ import styles from '../../Styles/Contenedor';
 const DetalleEspecificoEpisodios = ({item}) => {
   const {GetDataEspesifica, especifico, loading} = useGetDataApiRick();
 useEffect(() => {
-    console.log(item)
 GetDataEspesifica(item)
 }, [])
 

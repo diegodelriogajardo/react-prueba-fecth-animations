@@ -6,7 +6,16 @@ import {useNavigation} from '@react-navigation/native';
 import HeaderApi from './HeaderApi';
 import Pagination from './Pagination';
 const Api = () => {
-  const {characters, getData, loading, nexPage, goPage, page, backPage,maxPage} = useGetDataApiRick();
+  const {
+    characters,
+    getData,
+    loading,
+    nexPage,
+    goPage,
+    page,
+    backPage,
+    maxPage,
+  } = useGetDataApiRick();
   const navegacion = useNavigation();
   const [filtro, setFiltro] = useState('');
   useEffect(() => {
@@ -19,27 +28,30 @@ const Api = () => {
   }, [navegacion]);
 
   const filtrarCharacters = () => {
-    let Lista = characters;
+    let Lista = characters?characters:[];
     let filtroUp = filtro.toUpperCase();
     Lista = Lista.filter(x => x.name.toUpperCase().includes(filtroUp));
 
     return Lista;
   };
 
-  return loading ? (
-    <Loading></Loading>
-  ) : (
+  return (
     <>
-      <HeaderApi setFiltro={setFiltro} 
+      <HeaderApi setFiltro={setFiltro}
+      page={page}
+      maxPage={maxPage} />
+      <Pagination
+        nexPage={nexPage}
+        goPage={goPage}
+        page={page}
+        backPage={backPage}
+        maxPage={maxPage}
       />
-              <Pagination 
-                 nexPage={nexPage}
-                 goPage={goPage}
-                  page={page}
-                   backPage={backPage}
-                   maxPage={maxPage}
-              />
-      <ListaPersonajesBase characters={filtrarCharacters()} />
+      {loading ? (
+        <Loading></Loading>
+      ) : (
+        <ListaPersonajesBase characters={filtrarCharacters()} />
+      )}
     </>
   );
 };

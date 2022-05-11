@@ -57,21 +57,20 @@ const useGetDataApiRick = () => {
     if (page < maxPage) {
       await goPage(page + 1);
     } else {
-      setPage(1)
-      getData()
+      setPage(1);
+      getData();
     }
   };
   const backPage = async () => {
     if (page > 2) {
       await goPage(page - 1);
     } else {
-      setPage(1)
+      setPage(1);
       getData();
     }
   };
   const goPage = async page => {
     setLoading(true);
-    console.log(page);
     try {
       let dataCharacters = await fetch(
         'https://rickandmortyapi.com/api/character?page=' + page,
@@ -109,7 +108,7 @@ const useGetDataApiRick = () => {
     backPage,
     goPage,
     page,
-    maxPage
+    maxPage,
   };
 };
 

@@ -24,7 +24,6 @@ const Pagination = ({nexPage, goPage, page, backPage,maxPage}) => {
         style={styles.TextInputPagination}
         placeholder="ir a la pagina..."
         onChangeText={text => irA(text)}></TextInput>
-      <Text>{page}</Text>
       <TouchableOpacity
         onPress={() => nexPage()}
         style={styles.ButtonPagintation}

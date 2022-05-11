@@ -4,6 +4,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     backgroundColor: '#eaeaea',
+    alignContent:'center',
+    justifyContent:'space-around'
   },
   title: {
     marginTop: 16,
@@ -116,6 +118,16 @@ const styles = StyleSheet.create({
   TextButtonPagination:{
     textAlign:'center',
     color:'white',
+  },
+  TextInputPagination:{
+    backgroundColor: 'white',
+    marginVertical:10,
+    marginHorizontal:4,
+    borderWidth:5,
+    borderRadius:25,
+    textAlign:'center',
+    width:'50%',
+    height:"100%"
   }
 });
 
