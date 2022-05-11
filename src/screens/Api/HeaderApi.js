@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native-animatable';
 import {TextInput} from 'react-native-gesture-handler';
 import styles from '../../Styles/Contenedor';
+
 const HeaderApi = ({setFiltro}) => {
   return (
     <View animation={'fadeIn'} duration={500}>

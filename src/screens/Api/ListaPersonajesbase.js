@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, ScrollView} from 'react-native';
-import StyledButton from '../../components/ButtonEstilizado';
+import {ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styles from '../../Styles/Contenedor';
+import Personaje from './Personaje';
 const ListaPersonajesBase = ({characters}) => {
   const navegacion = useNavigation();
   const goDetails = item => {
@@ -12,16 +12,13 @@ const ListaPersonajesBase = ({characters}) => {
   return (
     <ScrollView style={styles.ScrollViewApi}>
       {characters.map((item, index) => {
-        let backgroundColor = index % 2 == 0 ? 'red' : 'green';
         return (
-          <View key={index} style={styles.containerButton}>
-            <StyledButton
-              title={item.name}
-              onPress={() => goDetails(item)}
-              style={{
-                backgroundColor: backgroundColor,
-              }}></StyledButton>
-          </View>
+        <Personaje
+        key={index}
+        item={item}
+        index={index}
+        goDetails={goDetails}
+        />
         );
       })}
     </ScrollView>
