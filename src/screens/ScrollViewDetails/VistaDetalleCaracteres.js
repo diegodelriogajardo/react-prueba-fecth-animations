@@ -4,6 +4,7 @@ import useGetDataApiRick from '../../hooks/GetDataApiRick';
 import { ActivityIndicator } from 'react-native';
 import styles from '../../Styles/Contenedor';
 import DetalleEspecificoCharacters from './DetalleEspecificoCharacters';
+import { FlatList } from 'react-native-gesture-handler';
 
 const VistaDetalleCaracteres = ({EpisodioSeleccionado}) => {
     const {GetDataEspesifica,especifico,loading}=useGetDataApiRick();
@@ -14,22 +15,29 @@ const VistaDetalleCaracteres = ({EpisodioSeleccionado}) => {
     return ( loading?<ActivityIndicator/>:
     <View>
     <Text style={styles.title}>Participantes: {especifico.name}</Text>
-    <ScrollView
+    <View
       style={styles.barraEpisodios}
       contentContainerStyle={{alignItems: 'center'}}
-      horizontal>
-      {especifico?.characters?.map((item, index) => {
-        return (
-          <View key={index} style={styles.container}>
-          <DetalleEspecificoCharacters
+      >
+        <FlatList
+        horizontal
+        data={especifico.characters}
+        renderItem={({item,index})=>
+          <Card
+          key={index}
           item={item}
-          ></DetalleEspecificoCharacters>
-          </View>
-        );
-      })}
-    </ScrollView>
+          ></Card>
+        }
+        ></FlatList>
+    </View>
   </View>
      );
 }
- 
+ const Card=({item})=>{
+  return <View  style={styles.container}>
+  <DetalleEspecificoCharacters
+  item={item}
+  ></DetalleEspecificoCharacters>
+  </View>
+ }
 export default VistaDetalleCaracteres;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
+import {View,FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styles from '../../Styles/Contenedor';
 import Personaje from './Personaje';
@@ -10,18 +10,18 @@ const ListaPersonajesBase = ({characters}) => {
   };
 
   return (
-    <ScrollView style={styles.ScrollViewApi}>
-      {characters.map((item, index) => {
-        return (
+    <View style={styles.ScrollViewApi}>
+      <FlatList
+      data={characters}
+      renderItem={({item,index})=>
         <Personaje
-        key={index}
         item={item}
         index={index}
         goDetails={goDetails}
         />
-        );
-      })}
-    </ScrollView>
+      }
+      />
+    </View>
   );
 };
 

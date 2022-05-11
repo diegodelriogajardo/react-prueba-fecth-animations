@@ -5,7 +5,6 @@ import styles from '../../Styles/Contenedor';
 const DetalleEspecificoCharacters = ({item}) => {
   const {GetDataEspesifica, especifico, loading} = useGetDataApiRick();
 useEffect(() => {
-    console.log(item)
 GetDataEspesifica(item)
 }, [])
 
