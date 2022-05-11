@@ -4,9 +4,9 @@ import ListaPersonajesBase from './ListaPersonajesbase';
 import useGetDataApiRick from '../../hooks/GetDataApiRick';
 import {useNavigation} from '@react-navigation/native';
 import HeaderApi from './HeaderApi';
-
+import Pagination from './Pagination';
 const Api = () => {
-  const {characters, getData, loading} = useGetDataApiRick();
+  const {characters, getData, loading, nexPage, goPage, page, backPage,maxPage} = useGetDataApiRick();
   const navegacion = useNavigation();
   const [filtro, setFiltro] = useState('');
   useEffect(() => {
@@ -30,7 +30,15 @@ const Api = () => {
     <Loading></Loading>
   ) : (
     <>
-      <HeaderApi setFiltro={setFiltro} />
+      <HeaderApi setFiltro={setFiltro} 
+      />
+              <Pagination 
+                 nexPage={nexPage}
+                 goPage={goPage}
+                  page={page}
+                   backPage={backPage}
+                   maxPage={maxPage}
+              />
       <ListaPersonajesBase characters={filtrarCharacters()} />
     </>
   );

@@ -95,6 +95,28 @@ const styles = StyleSheet.create({
     flex: 1,
    marginHorizontal:20,
    marginVertical:7,
+  },
+  containerPagination:{
+  flexDirection:"row",
+  width:'100%',
+  height:'5%',
+  alignItems:'center',
+  justifyContent:'center'
+  },
+  ButtonPagintation:{
+    backgroundColor:'blue',
+    width:'20%',
+    height:"100%",
+    borderColor:"black",
+    borderWidth:1,
+    borderRadius:5,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  TextButtonPagination:{
+    textAlign:'center',
+    color:'white',
   }
 });
+
 export default styles;
