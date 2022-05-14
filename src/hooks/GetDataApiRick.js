@@ -3,6 +3,7 @@ const useGetDataApiRick = () => {
   const [characters, setCharacters] = useState([]);
   const [especifico, setEspecifico] = useState({});
   const [loading, setLoading] = useState(true);
+  const [loadingScroll, setLoadingScroll] = useState(false);
   const [page, setPage] = useState(1);
   const [maxPage, setMaxPage] = useState(Infinity);
   //acciones del hook
@@ -53,6 +54,14 @@ const useGetDataApiRick = () => {
     }
   };
 
+  // const nexPage = async () => {
+  //   if (page < maxPage) {
+  //     await goPage(page + 1);
+  //   } else {
+  //     setPage(1)
+  //     getData()
+  //   }
+  // };
   const nexPage = async () => {
     if (page < maxPage) {
       await goPage(page + 1);
@@ -69,8 +78,37 @@ const useGetDataApiRick = () => {
       getData();
     }
   };
+  // const goPage = async page => {
+  //   setLoading(true);
+  //   console.log(page);
+  //   try {
+  //     let dataCharacters = await fetch(
+  //       'https://rickandmortyapi.com/api/character?page=' + page,
+  //       {
+  //         method: 'GET',
+  //         headers: {
+  //           Accept: 'application/json',
+  //           'Content-Type': 'application/json',
+  //         },
+  //         // body: JSON.stringify({
+  //         //   firstParam: 'yourValue',
+  //         //   secondParam: 'yourOtherValue'
+  //         // })
+  //       },
+  //     );
+  //     let datacharactersjson = await dataCharacters.json();
+  //     //  console.log(datacharactersjson?.results)
+  //     setCharacters(datacharactersjson?.results);
+  //     setLoading(false);
+
+  //     setPage(page);
+  //   } catch (error) {
+  //     setLoading(false);
+  //     console.log(error);
+  //   }
+  // };
   const goPage = async page => {
-    setLoading(true);
+    setLoadingScroll(true);
     console.log(page);
     try {
       let dataCharacters = await fetch(
@@ -89,16 +127,14 @@ const useGetDataApiRick = () => {
       );
       let datacharactersjson = await dataCharacters.json();
       //  console.log(datacharactersjson?.results)
-      setCharacters(datacharactersjson?.results);
-      setLoading(false);
-
+      setCharacters(prevState=>([...prevState,...datacharactersjson?.results]));
+    // setLoadingScroll(false);
       setPage(page);
     } catch (error) {
-      setLoading(false);
+      setLoadingScroll(false);
       console.log(error);
     }
   };
-
   return {
     characters,
     getData,
@@ -109,7 +145,8 @@ const useGetDataApiRick = () => {
     backPage,
     goPage,
     page,
-    maxPage
+    maxPage,
+    loadingScroll
   };
 };
 

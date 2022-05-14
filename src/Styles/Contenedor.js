@@ -116,6 +116,9 @@ const styles = StyleSheet.create({
   TextButtonPagination:{
     textAlign:'center',
     color:'white',
+  },
+  FlatListContainer:{
+      maxHeight:'80%'
   }
 });
 

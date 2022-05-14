@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import HeaderApi from './HeaderApi';
 import Pagination from './Pagination';
 const Api = () => {
-  const {characters, getData, loading, nexPage, goPage, page, backPage,maxPage} = useGetDataApiRick();
+  const {characters, getData, loading, nexPage, goPage, page, backPage,maxPage,loadingScroll} = useGetDataApiRick();
   const navegacion = useNavigation();
   const [filtro, setFiltro] = useState('');
   useEffect(() => {
@@ -32,14 +32,15 @@ const Api = () => {
     <>
       <HeaderApi setFiltro={setFiltro} 
       />
-              <Pagination 
+              {/* <Pagination 
                  nexPage={nexPage}
                  goPage={goPage}
                   page={page}
                    backPage={backPage}
                    maxPage={maxPage}
-              />
-      <ListaPersonajesBase characters={filtrarCharacters()} />
+              /> */}
+      <ListaPersonajesBase characters={filtrarCharacters()}  nexPage={nexPage}  loadingScroll={loadingScroll}/>
+     
     </>
   );
 };
